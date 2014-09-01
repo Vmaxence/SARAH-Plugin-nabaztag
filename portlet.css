@@ -1,0 +1,30 @@
+.plugin-gridster.Nabaztag .logo,
+.plugin-gridster.Nabaztag .text {
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.plugin-gridster.Nabaztag .logo {
+  background: #63B479;
+  left: 0; width: 35%; 
+}
+
+.plugin-gridster.Nabaztag .logo .ajax {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  width: auto;
+}
+
+.plugin-gridster.Nabaztag .text {
+  background: #FFFFFF;
+  right: 0; width: 65%; 
+  text-align: center;
+}
+
+.plugin-gridster.Nabaztag .text .var {
+  margin-top: 25%;
+  font-size: 40px; line-height: 42px;
+  font-weight: bold;
+}

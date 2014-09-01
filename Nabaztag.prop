@@ -1,0 +1,10 @@
+{
+  "modules" : { 
+    "Nabaztag"  : {
+      "description" : "Control du Nabaztag:tag",
+      "adresse_mac" : "empty",
+      "token_api"   : "empty",
+      "version"     : "1.0"
+    }
+  }
+}

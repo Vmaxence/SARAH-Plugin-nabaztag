@@ -1,0 +1,40 @@
+<grammar version="1.0" xml:lang="fr-FR" mode="voice" root="ruleNabaztag" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+	<rule id="ruleNabaztag" scope="public">
+		<tag>out.action=new Object(); </tag>
+		
+		<item weight="2">SARAH</item>
+		<one-of>
+			<!--item>Parle du terrier<tag>out.action.commande="parle";</tag></item>
+			<item>la danse du lapin<tag>out.action.commande="danse";</tag></item> 
+			<item>le lapin est en colaire<tag>out.action.commande="oreille";</tag></item>
+			<item>oreille du lapin deriaire<tag>out.action.commande="oreille";</tag></item>
+			<item>oreille du lapin en haut<tag>out.action.commande="oreille";out.action.param="haut";</tag></item>
+			<item>oreille du lapin a l'horizontale<tag>out.action.commande="oreille";out.action.param="line";</tag></item>
+			<item>fait dormir le lapin<tag>out.action.commande="dormir";</tag></item> 
+			<item>reveille le lapin<tag>out.action.commande="reveille";</tag></item> 
+			<item>musique dans le lapin<tag>out.action.commande="musique";</tag></item> 
+			<item>le champ du coq<tag>out.action.commande="musique";out.action.param="coq";</tag></item> 
+			<item>radio nrj dans le lapin<tag>out.action.commande="musique";out.action.param="nrj";</tag></item> 
+			<item>fun radio dans le lapin<tag>out.action.commande="musique";out.action.param="fun";</tag></item> 
+			<item>arrette la radio du lapin<tag>out.action.commande="stop";</tag></item--> 
+
+			<item>fait dormir le lapin<tag>out.action.commande="dormir";</tag></item> 
+			<item>le lapin est fatigué<tag>out.action.commande="dormir";</tag></item> 
+			<item>réveille le lapin<tag>out.action.commande="reveil";</tag></item> 
+			<item>redemarre le lapin<tag>out.action.commande="smallReboot";</tag></item> 
+			<item>c'est la fete de qui<tag>out.action.commande="ephemeride";</tag></item> 
+
+			<item>reboot le lapin<tag>out.action.commande="reboot";</tag></item> 
+			<item>quel est le nom du lapin<tag>out.action.commande="name";</tag></item> 
+
+			<item>le lapin est en colere<tag>out.action.commande="oreilles";out.action.param="colere";</tag></item> 
+			<item>le lapin est heureux<tag>out.action.commande="oreilles";out.action.param="happy";</tag></item> 
+			<item>le lapin se demande quoi<tag>out.action.commande="oreilles";out.action.param="question";</tag></item> 
+			<item>le lapin est malade<tag>out.action.commande="oreilles";out.action.param="vase";</tag></item> 
+
+
+
+		</one-of>
+		<tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/Nabaztag";</tag>
+	</rule>
+</grammar>
