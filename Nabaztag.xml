@@ -4,20 +4,6 @@
 		
 		<item weight="2">SARAH</item>
 		<one-of>
-			<!--item>Parle du terrier<tag>out.action.commande="parle";</tag></item>
-			<item>la danse du lapin<tag>out.action.commande="danse";</tag></item> 
-			<item>le lapin est en colaire<tag>out.action.commande="oreille";</tag></item>
-			<item>oreille du lapin deriaire<tag>out.action.commande="oreille";</tag></item>
-			<item>oreille du lapin en haut<tag>out.action.commande="oreille";out.action.param="haut";</tag></item>
-			<item>oreille du lapin a l'horizontale<tag>out.action.commande="oreille";out.action.param="line";</tag></item>
-			<item>fait dormir le lapin<tag>out.action.commande="dormir";</tag></item> 
-			<item>reveille le lapin<tag>out.action.commande="reveille";</tag></item> 
-			<item>musique dans le lapin<tag>out.action.commande="musique";</tag></item> 
-			<item>le champ du coq<tag>out.action.commande="musique";out.action.param="coq";</tag></item> 
-			<item>radio nrj dans le lapin<tag>out.action.commande="musique";out.action.param="nrj";</tag></item> 
-			<item>fun radio dans le lapin<tag>out.action.commande="musique";out.action.param="fun";</tag></item> 
-			<item>arrette la radio du lapin<tag>out.action.commande="stop";</tag></item--> 
-
 			<item>fait dormir le lapin<tag>out.action.commande="dormir";</tag></item> 
 			<item>le lapin est fatigué<tag>out.action.commande="dormir";</tag></item> 
 			<item>réveille le lapin<tag>out.action.commande="reveil";</tag></item> 
