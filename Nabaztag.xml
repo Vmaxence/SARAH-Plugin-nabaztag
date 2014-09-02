@@ -1,8 +1,9 @@
 <grammar version="1.0" xml:lang="fr-FR" mode="voice" root="ruleNabaztag" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+
 	<rule id="ruleNabaztag" scope="public">
 		<tag>out.action=new Object(); </tag>
+		<item>SARAH</item>
 		
-		<item weight="2">SARAH</item>
 		<one-of>
 			<item>fait dormir le lapin<tag>out.action.commande="dormir";</tag></item> 
 			<item>le lapin est fatigué<tag>out.action.commande="dormir";</tag></item> 
@@ -18,9 +19,16 @@
 			<item>le lapin se demande quoi<tag>out.action.commande="oreilles";out.action.param="question";</tag></item> 
 			<item>le lapin est malade<tag>out.action.commande="oreilles";out.action.param="vase";</tag></item> 
 
-
-
+			<item>le lapin respire cyan<tag>out.action.commande="respiration";out.action.couleur="cyan";</tag></item> 
+			<item>le lapin respire blanc<tag>out.action.commande="respiration";out.action.couleur="white";</tag></item> 
+			<item>le lapin respire jaune<tag>out.action.commande="respiration";out.action.couleur="yellow";</tag></item> 
+			<item>le lapin respire aucune<tag>out.action.commande="respiration";out.action.couleur="none";</tag></item>
+			<item>le lapin respire bleu<tag>out.action.commande="respiration";out.action.couleur="blue";</tag></item> 
+			<item>le lapin respire rouge<tag>out.action.commande="respiration";out.action.couleur="red";</tag></item> 
+			<item>le lapin respire vert<tag>out.action.commande="respiration";out.action.couleur="green";</tag></item> 
+			<item>le lapin respire violet<tag>out.action.commande="respiration";out.action.couleur="violet";</tag></item> 
 		</one-of>
 		<tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/Nabaztag";</tag>
 	</rule>
+
 </grammar>

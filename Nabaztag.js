@@ -11,30 +11,37 @@ exports.action = function(data, callback, config, SARAH){
         return callback({'tts' : "La variable, adresse_mac, n'est pas configurai."});
     }
     
-    var serveur = 'http://openjabnab.fr/ojn/FR/';
-    var uriAPI  = 'api.jsp?';
-    var key     = 'sn='+config.adresse_mac+'&token='+config.token_api;
+    var serveur       = 'http://openjabnab.fr/ojn/FR/';
+    var uriAPI        = 'api.jsp?';
+    var uriAPIStream  = 'api_stream.jsp?';
+    var key           = 'sn='+config.adresse_mac+'&token='+config.token_api;
     
-    var url_action = serveur + uriAPI + key;
     var action     = 'empty';
     var retourXML  = 'non';
+    var api        = 'empty';
 
     if (data.commande) {
         switch(data.commande) {
-            case "test" :        action = "&action=19"; break;
-            case "dormir" :      action = "&action=14"; break;
-            case "reveil" :      action = "&action=13"; break;
-            case "smallReboot" : action = "&action=18"; break;
-            case "Reboot" :      action = "&action=17"; break;
-            case "name" :        action = '&action=10'; retourXML = 'oui'; break;
-            case 'horloge' :     action = '&plugin=clock&function=get'; break;
-            case 'ephemeride' :  action = '&plugin=ephemeride&function=get'; break;
-            case 'meteo' :       action = '&plugin=weather&function=get'; break;
-            case 'parle' :       
+            case "dormir":      action = "&action=14"; break;
+            case "reveil":      action = "&action=13"; break;
+            case "smallReboot": action = "&action=18"; break;
+            case "Reboot":      action = "&action=17"; break;
+            case "name":        action = '&action=10'; retourXML = 'oui'; break;
+            case 'horloge':     action = '&plugin=clock&function=get'; break;
+            case 'ephemeride':  action = '&plugin=ephemeride&function=get'; break;
+            case 'meteo':       action = '&plugin=weather&function=get'; break;
+            case 'humeur':      action = '&plugin=surprise&function=speak'; break;
+            case 'music':       action = '&urlList=http://vipicecast.yacast.net/europe1'; api = uriAPIStream; break;
+            case 'parle':       
                 if( !data.msg || data.msg=='') { action = '&tts=bonjour+petit+lapin'; }
                 else { action = '&tts=' + data.msg; }
             break;
-
+            case 'respiration' : 
+                if(data.couleur != '' ) {
+                    action ='&plugin=colorbreathing&function=color&arg='+data.couleur;
+                    
+                }
+            break;
            case "oreilles" :
                 if( !data.param || data.param=='') {
                     action = '&chor=0,0,motor,1,0,0,0,0,motor,0,0,0,0';
@@ -54,8 +61,9 @@ exports.action = function(data, callback, config, SARAH){
             break;
         }
     }
-
+    if( api == "empty" ) { api = uriAPI; }
     if( action != 'empty') {
+        var url_action = serveur + api + key;
         var urlSend = url_action + action;
         
         sendURL(urlSend, callback, function(body){
