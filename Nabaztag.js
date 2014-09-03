@@ -20,6 +20,12 @@ exports.action = function(data, callback, config, SARAH){
     var retourXML  = 'non';
     var api        = 'empty';
 
+    var tts = "";
+    if (typeof data.tts !== 'undefined' || data.tts != '') {
+        data.commande = 'parle';
+        data.msg = data.tts; 
+    }
+    
     if (data.commande) {
         switch(data.commande) {
             case "dormir":      action = "&action=14"; break;
@@ -84,7 +90,7 @@ exports.action = function(data, callback, config, SARAH){
             } 
         });
     } else {
-        return callback({'tts' : ' Erreur d\'action'});
+        return callback({'tts' : ' Erreur d\'action Nabaztag'});
     }
 }
 
@@ -100,40 +106,40 @@ var sendURL = function (url, callback, cb) {
 }
 
 /**
-            ** Explications
-            **/
+** Explications
+**/
 
-            /**
-                Le tempo est exprimé en Hz. '10' représente donc un tempo d'une seconde.
+/**
+    Le tempo est exprimé en Hz. '10' représente donc un tempo d'une seconde.
 
-                Commander les oreilles 
-                    Pour commander les oreilles, on utilise une série de valeurs séparées par des virgules.
-                    Les commandes sont les suivantes :
-                        Première valeur : "l'heure" de l'action, '0' si c'est la première commande
-                        Deuxième valeur : 'motor', pour bouger une oreille
-                        Troisième valeur : commande des oreilles :
-                        '1' pour commander l'oreille gauche
-                        '0' pour commander l'oreille droite
-                        Quatrième valeur : angle de l'oreille, compris entre 0 et 180
-                        Cinquième valeur : inutilisée, mettre à '0'
-                        Sixième valeur : sens de rotation des oreilles
-                        '1' : sens horaire : haut->arrière->bas->face->haut...
-                        '0' : sens antihoraire : haut->face->bas->arrière->haut...
-                        Exemple d'une commande qui tourne l'oreille gauche dans le sens antihoraire avec un angle de 20°, à "l'heure" 0 :
-                            0,motor,1,20,0,0
+    Commander les oreilles 
+        Pour commander les oreilles, on utilise une série de valeurs séparées par des virgules.
+        Les commandes sont les suivantes :
+            Première valeur : "l'heure" de l'action, '0' si c'est la première commande
+            Deuxième valeur : 'motor', pour bouger une oreille
+            Troisième valeur : commande des oreilles :
+            '1' pour commander l'oreille gauche
+            '0' pour commander l'oreille droite
+            Quatrième valeur : angle de l'oreille, compris entre 0 et 180
+            Cinquième valeur : inutilisée, mettre à '0'
+            Sixième valeur : sens de rotation des oreilles
+            '1' : sens horaire : haut->arrière->bas->face->haut...
+            '0' : sens antihoraire : haut->face->bas->arrière->haut...
+            Exemple d'une commande qui tourne l'oreille gauche dans le sens antihoraire avec un angle de 20°, à "l'heure" 0 :
+                0,motor,1,20,0,0
 
-                Commander les DEL
-                    Pour commander les DEL, on utilise une série de valeurs séparées par des virgules.
-                    Les commandes sont les suivantes :
-                        Première valeur : "l'heure" de l'action, '0' si c'est la première commande
-                        Deuxième valeur : 'led', pour changer la couleur d'une DEL
-                        Troisième valeur : utilisée pour définir quelle DEL vous voulez illuminer :
-                            '0' : DEL du dessous
-                            '1' : DEL de gauche
-                            '2' : DEL du milieu
-                            '3' : DEL de droite
-                            '4' : DEL du nez du lapin
-                        Quatrième, cinquième et sixième valeurs : la couleur en RVB, les valeurs sont comprises entre 0 et 255.
-                        Exemple d'une commande qui met la DEL du milieu en vert, puis qui met celle de gauche en rouge, et pour finir qui éteint celle de droite :
-                            0,led,2,0,238,0,2,led,1,250,0,0,3,led,2,0,0,0
-            **/
+    Commander les DEL
+        Pour commander les DEL, on utilise une série de valeurs séparées par des virgules.
+        Les commandes sont les suivantes :
+            Première valeur : "l'heure" de l'action, '0' si c'est la première commande
+            Deuxième valeur : 'led', pour changer la couleur d'une DEL
+            Troisième valeur : utilisée pour définir quelle DEL vous voulez illuminer :
+                '0' : DEL du dessous
+                '1' : DEL de gauche
+                '2' : DEL du milieu
+                '3' : DEL de droite
+                '4' : DEL du nez du lapin
+            Quatrième, cinquième et sixième valeurs : la couleur en RVB, les valeurs sont comprises entre 0 et 255.
+            Exemple d'une commande qui met la DEL du milieu en vert, puis qui met celle de gauche en rouge, et pour finir qui éteint celle de droite :
+                0,led,2,0,238,0,2,led,1,250,0,0,3,led,2,0,0,0
+**/
