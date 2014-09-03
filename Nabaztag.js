@@ -20,10 +20,13 @@ exports.action = function(data, callback, config, SARAH){
     var retourXML  = 'non';
     var api        = 'empty';
 
+    var retour     = '';
+
     var tts = "";
-    if (typeof data.tts !== 'undefined' || data.tts != '') {
+    if (data.tts) {
         data.commande = 'parle';
         data.msg = data.tts; 
+        retour = data.tts;
     }
     
     if (data.commande) {
@@ -45,7 +48,6 @@ exports.action = function(data, callback, config, SARAH){
             case 'respiration' : 
                 if(data.couleur != '' ) {
                     action ='&plugin=colorbreathing&function=color&arg='+data.couleur;
-                    
                 }
             break;
            case "oreilles" :
@@ -66,34 +68,32 @@ exports.action = function(data, callback, config, SARAH){
                 }
             break;
         }
-    }
-    if( api == "empty" ) { api = uriAPI; }
-    if( action != 'empty') {
-        var url_action = serveur + api + key;
-        var urlSend = url_action + action;
+      	if( api == "empty" ) { api = uriAPI; }
+    
+        if( action != 'empty') {
+            var url_action = serveur + api + key;
+            var urlSend = url_action + action;
         
-        sendURL(urlSend, callback, function(body){
-            if(retourXML=='oui') {
-                var xml2js = require('xml2js');
-                var parser = new xml2js.Parser({trim: true});
-                
-                parser.parseString(body, function (err, xml) {
-                    recup = xml.rsp.rabbitName[0];
-                    console.log(recup);
-                    sendURL(url_action + "&tts=je m'appelle " + recup, callback, function(body){
-
+            sendURL(urlSend, callback, function(body){
+                if(retourXML=='oui') {
+                    var xml2js = require('xml2js');
+                    var parser = new xml2js.Parser({trim: true});
+                    
+                    parser.parseString(body, function (err, xml) {
+                        recup = xml.rsp.rabbitName[0];
+                        sendURL(url_action + "&tts=je m'appelle " + recup, callback, function(body){});
+                        return callback({'tts' : ''});
                     });
+                } else {
                     return callback({'tts' : ''});
-                });
-            } else {
-                return callback({'tts' : ''});
-            } 
-        });
-    } else {
-        return callback({'tts' : ' Erreur d\'action Nabaztag'});
+                } 
+            });
+        } else {
+            return callback({'tts' : ' Erreur d\'action Nabaztag'});
+        }
     }
+    return callback({'tts' : retour});
 }
-
 var sendURL = function (url, callback, cb) {
     var request = require('request');
     request( { 'uri' : url}, function (err, response, body) {
